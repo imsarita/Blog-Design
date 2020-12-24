@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="style-nav.css">
+    <link rel="stylesheet" href="style-blog.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            //e.preventDefault();
+            var data = localStorage.getItem("form");
+            //console.log(data);
+
+            $.each(JSON.parse(data), function (item, value) {
+                //console.log($("#" + value.name));
+                //$("#" + value.name).html(value.value);
+                if(value.value != ""){
+                    $("#" + value.name).html(value.value);
+                }
+            });
+
+
+        });
+
+
+        //FOR RESPONSIVENESS
+        $(function () {
+            var ulLi = $('nav ul > li'),
+                fa = $('nav ul > li:last-of-type a .fa');
+
+            $('nav ul').append('<ol></ol>');
+
+            $('nav').each(function () {
+                for (var i = 0; i <= ulLi.length - 3; i++) {
+                    //console.log(i);
+                    $('nav ul > ol').append("<li>" + i + "</li>");
+                    $('nav ul > ol > li').eq(i).html(ulLi.eq(i + 1).html());
+                }
+            });
+
+
+            $('nav ul > li:last-of-type').on('click', function () {
+
+                //console.log("check1");
+                fa.toggleClass('fa-bars').toggleClass('fa-times');
+                $(this).parent().children('ol').toggleClass('active-navbar-item').fa.toggleClass('fa-bars');
+                $(this).parent().children('ol').slideToggle(500);
+            });
+            if ($(window).width() >= 900) {
+                //console.log($('nav ul > li:last-of-type').css("display: none"));
+                $('nav ul > li:last-of-type').css("display", " none");
+            }
+            else {
+                //console.log($('nav ul > li:last-of-type').css("display: none"));
+                $('nav ul > li:last-of-type').css("display", " flex !important");
+            }
+        });
+    </script>
+    <style>
+        nav ul>ol {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="flex-row flex-col">
+
+        <ul class="sidebar-nav">
+            <li style="text-decoration: none !important;">
+                <div class="flex-row-rev">
+                    <p>subscribe</p>
+                    <h1 style="padding:0.4rem 1.5rem;"><a href="index.html" class="navbar-link" id="home">Large</a></h1>
+                    <div style="float: right;padding: 1rem 0;">
+                        <button style="float: right;" class="signup">Signup</button>
+                        <img src="data:image/svg+xml;base64,PHN2ZyBpZD0iQ2FwYV8xIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHdpZHRoPSI1MTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGc+PGc+PHBhdGggZD0ibTUwOS44MDIgNDQ0LjczNi04OS4yNDQtODkuMjMzYy0yLjkyNy0yLjkyNy03LjY3Ny0yLjkzLTEwLjYwOC4wMDEtMi45MjkgMi45MjktMi45MjkgNy42NzkuMDAxIDEwLjYwOGw4My45MzkgODMuOTI5LTQzLjg1IDQzLjg1LTEzNC41OTMtMTM0LjYwNCA0My44NC00My44NCAyNS45MSAyNS45MTFjMi45MyAyLjkyOCA3LjY3OSAyLjkyOCAxMC42MDkgMCAyLjkyOS0yLjkzIDIuOTI5LTcuNjc5IDAtMTAuNjA5bC0zMS4yMTUtMzEuMjE1Yy0yLjkzLTIuOTI4LTcuNjc5LTIuOTI4LTEwLjYwOSAwbC01LjU4MyA1LjU4My0yMi4wNjMtMjIuMDYyIDUuNTg3LTUuNTg3YzIuOTI5LTIuOTMgMi45MjktNy42NzkgMC0xMC42MDlsLTI4LjQ2NC0yOC40NjRjMzMuMTI5LTYxLjIyMiAyMy44NjktMTM5LjQ5LTI3LjgwMS0xOTEuMTctNjIuOTc3LTYyLjk2OC0xNjUuNDUtNjIuOTY5LTIyOC40MzEuMDAxLTYyLjk2NyA2Mi45NzktNjIuOTY3IDE2NS40NTIgMCAyMjguNDMxIDMuNjU1IDMuNjU1IDcuNTI4IDcuMTc1IDExLjUxMSAxMC40NjMgMy4xOTUgMi42MzUgNy45MjMgMi4xODYgMTAuNTYtMS4wMXMyLjE4NS03LjkyMy0xLjAxLTEwLjU2Yy0zLjYxOC0yLjk4Ni03LjEzNC02LjE4Mi0xMC40NTMtOS41LTU3LjEyLTU3LjEyOS01Ny4xMi0xNTAuMDg2LS4wMDEtMjA3LjIxNSA1Ny4xMy01Ny4xMiAxNTAuMDg1LTU3LjEyMSAyMDcuMjE1LS4wMDEgNTcuMTIgNTcuMTMgNTcuMTIgMTUwLjA4Ny4wMDEgMjA3LjIxNS00NC41OTQgNDQuNTg4LTExMi40NTcgNTUuNjg0LTE2OC44NzEgMjcuNjE0LTMuNzExLTEuODQ3LTguMjExLS4zMzUtMTAuMDU3IDMuMzc1LTEuODQ1IDMuNzA5LS4zMzUgOC4yMTEgMy4zNzUgMTAuMDU3IDIyLjkgMTEuMzk0IDQ3LjUwMSAxNi45MzMgNzEuOTE0IDE2LjkzMyAyNi43NDMgMCA1My4yNDUtNi42NjQgNzYuOTk5LTE5LjU1NmwyOC40NTEgMjguNDUxYzEuNDY1IDEuNDY0IDMuMzg1IDIuMTk3IDUuMzA1IDIuMTk3IDEuOTE5IDAgMy44MzktLjczMyA1LjMwNS0yLjE5N2w1LjU4Ny01LjU4NyAyMi4wNjIgMjIuMDYzLTUuNTgzIDUuNTgzYy0yLjkyOSAyLjkzLTIuOTI5IDcuNjc5IDAgMTAuNjA4bDE0NS4yMDIgMTQ1LjIxMmMxLjQwNiAxLjQwNyAzLjMxNSAyLjE5OCA1LjMwNSAyLjE5OHMzLjg5Ny0uNzkgNS4zMDUtMi4xOTdsNTQuNDU4LTU0LjQ1OGMxLjQwNi0xLjQwNyAyLjE5Ny0zLjMxNSAyLjE5Ny01LjMwNXMtLjc5NC0zLjg5Ny0yLjIwMi01LjMwNHptLTI1OC4xODUtMTQ5LjI3NGM4LjUxNC01LjczOSAxNi41NzYtMTIuMzQyIDI0LjA0MS0xOS44MDUgNy40OTYtNy40OTcgMTQuMDg5LTE1LjU2IDE5LjgtMjQuMDQzbDIwLjU1MSAyMC41NTEtNDMuODQ1IDQzLjg0NnptNDIuMDQ2IDIwLjI2NiAyMi4wNjQtMjIuMDY0IDIyLjA2MyAyMi4wNjItMjIuMDY1IDIyLjA2NXoiLz48cGF0aCBkPSJtMTk0LjMzIDYxLjIzYzMuOTM4IDEuMjkxIDguMTc0LS44NiA5LjQ2MS00Ljc5NyAxLjI4OC0zLjkzOC0uODU5LTguMTc0LTQuNzk3LTkuNDYxLTQzLjQyNC0xNC4yMDMtOTAuNDQ2LTIuOTc3LTEyMi43MjQgMjkuMjk4LTQ2Ljk2MiA0Ni45NjQtNDYuOTYyIDEyMy4zOCAwIDE3MC4zNDMgMjIuNzUgMjIuNzQ5IDUyLjk5NyAzNS4yNzcgODUuMTcyIDM1LjI3N3M2Mi40MjItMTIuNTI4IDg1LjE3MS0zNS4yNzcgMzUuMjc3LTUyLjk5NiAzNS4yNzctODUuMTcxLTEyLjUyOC02Mi40MjItMzUuMjc3LTg1LjE3MmMtNC40OTktNC40OTgtOS4zNTctOC42NDktMTQuNDQyLTEyLjMzOC0zLjM1Mi0yLjQzNS04LjA0NC0xLjY4OS0xMC40NzYgMS42NjYtMi40MzMgMy4zNTMtMS42ODcgOC4wNDMgMS42NjYgMTAuNDc2IDQuNDQ3IDMuMjI3IDguNzAxIDYuODYyIDEyLjY0MyAxMC44MDQgMTkuOTE2IDE5LjkxNSAzMC44ODQgNDYuMzk2IDMwLjg4NCA3NC41NjNzLTEwLjk2NyA1NC42NDctMzAuODg0IDc0LjU2MmMtMTkuOTE1IDE5LjkxNi00Ni4zOTUgMzAuODg0LTc0LjU2MiAzMC44ODRzLTU0LjY0OC0xMC45NjctNzQuNTYzLTMwLjg4NGMtNDEuMTE0LTQxLjExNC00MS4xMTQtMTA4LjAxMSAwLTE0OS4xMjUgMjguMjU3LTI4LjI1NyA2OS40MzQtMzguMDgyIDEwNy40NTEtMjUuNjQ4eiIvPjwvZz48L2c+PC9zdmc+"
+                            style="width: 20%;float: right;padding: 0.2rem;">
+                    </div>
+                </div>
+            </li>
+            <li class="navbar-item"><a href="#">World</a></li>
+            <li class="navbar-item"><a href="#">U.S.</a></li>
+            <li class="navbar-item"><a href="#">Technology</a></li>
+            <li class="navbar-item"><a href="#">Culture</a></li>
+            <li class="navbar-item"><a href="#">Business</a></li>
+            <li class="navbar-item"><a href="#">Politics</a></li>
+            <li class="navbar-item"><a href="#">Opinion</a></li>
+            <li class="navbar-item"><a href="#">Science</a></li>
+            <li class="navbar-item"><a href="#">Health</a></li>
+            <li class="navbar-item"><a href="#">Style</a></li>
+            <li class="navbar-item"><a href="#">Travel</a></li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+
+    <section id="blog-title"
+        style="background:var(--grey); color:var(--white);text-align-left;flex-direction: column;border: none;text-align: left;"">
+        <h1 style=" padding:1rem;width: 50%;">Lorem ipsum dolor sit amet
+        consectetur adipisicing elit. Perspiciatis officiis maiores incidunt ex et quisquam unde adipisci molestiae
+        tempora rem, assumenda est, aut dolor dolorem nisi beatae id odio. Laudantium.
+        </h1>
+        <p id="blog-title-summary" style="padding:1rem;width: 50%;">
+            Lorem ipsum dolor sit amet
+            consectetur adipisicing elit. Perspiciatis officiis maiores incidunt ex et quisquam unde adipisci molestiae
+            tempora rem, assumenda est, aut dolor dolorem nisi beatae id odio. Laudantium.
+        </p>
+        <p style="padding:1rem;width: 50%;">Continue reading...</p>
+    </section>
+    <section>
+        <div>
+            <div>
+                <h5><strong>World</strong></h5>
+                <h1>Featured Post</h1>
+                <h6>Nov 16</h6>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem quaerat quae, quia possimus quasi
+                    laudantium
+                    perferendis ea similique aliquam laboriosam minima, atque magni. Sunt nesciunt, commodi nihil
+                    corrupti
+                    similique rerum.</p>
+                <h5 style="padding:0.2rem 0;">Continue reading</h5>
+            </div>
+            <img alt="Thumbnail">
+
+        </div>
+        <div>
+            <div>
+                <h5><strong>World</strong></h5>
+                <h1>Featured Post</h1>
+                <h6>Nov 16</h6>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem quaerat quae, quia possimus quasi
+                    laudantium
+                    perferendis ea similique aliquam laboriosam minima, atque magni. Sunt nesciunt, commodi nihil
+                    corrupti
+                    similique rerum.</p>
+                <h5 style="padding:0.2rem 0;">Continue reading</h5>
+            </div>
+            <img alt="Thumbnail">
+
+        </div>
+    </section>
+    <h2><em>From the Firehouse</em></h2>
+    <main>
+        <article>
+            <h1 id="atitle">Sample Blog post</h1>
+            <h6 id="date">Dec 25</h6>
+
+            <p id="acontent">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Donec a diam lectus. Set sit amet
+                ipsum mauris.
+                Maecenas congue ligula as quam viverra nec consectetur ant hendrerit. Donec et mollis dolor. Praesent et
+                diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia
+                consectetur.</p>
+
+            <h3 id="stitle">Dummy present here.</h3>
+
+            <p id="scontent">Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy
+                present here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy
+                present here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy
+                present here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy
+                present here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.
+            </p>
+
+            <h3 id="ssubtitle">Dummy present here..</h3>
+
+            <p id="ssubcontent">Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy
+                present here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy
+                present here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy
+                present here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy
+                present here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy
+                present here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy
+                present here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.Dummy present here.Dummy present
+                here.Dummy present here.Dummy present here.Dummy present here.</p>
+
+        </article>
+        <aside style="width: 30vw;">
+            <div style="padding: 1rem;background: var(--hr-line);text-align: left;">
+                <h2><em style="padding:0rem;">About</em></h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus explicabo provident nulla
+                    voluptatum ullam voluptas quam perspiciatis quibusdam saepe fugit magni expedita, mollitia
+                    blanditiis nemo reiciendis! Doloremque debitis illum ex.</p>
+            </div>
+            <div style="padding: 1rem;text-align:left;">
+                <h2>Archives</h2>
+
+                <ul>
+                    <li><a href="#">Mar 2016</a></li>
+                    <li><a href="#">Mar 2016</a></li>
+                    <li><a href="#">Mar 2016</a></li>
+                    <li><a href="#">Mar 2016</a></li>
+                </ul>
+            </div>
+        </aside>
+
+
+    </main>
+    <footer>
+        <div>
+            <button>Old</button>
+            <button>New</button>
+        </div>
+        <div>
+            <p>Blog template built for Bootstrap by <a
+                    href="mailto:acharya.sarita09@gmail.com?subject = Feedback&body = Message">@mdo</a></p>
+            <a href="#">Back to top</a>
+        </div>
+
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,123 @@
+main,
+em {
+    display: flex;
+    padding: 0.5rem 1.5rem;
+}
+
+article {
+    padding: 0 2rem 0 0;
+    text-align: left;
+    width: 80%;
+    word-break: break-all;
+    line-break: auto;
+    overflow: hidden;
+}
+
+section {
+    display: flex;
+    padding: 2rem 0.5rem 2rem 0.5rem;
+}
+
+section>div {
+    display: flex;
+    margin: 1rem;
+    border: 1px solid var(--hr-line);
+    box-shadow: 1px 3px #d2c9c963;
+}
+
+section>div>img {
+    width: 60%;
+    height: 100%;
+    background: darkgray;
+    text-align: center;
+    line-height: 10rem;
+}
+
+section>div>div {
+    padding: 0.5rem 0.5rem 0 0.5rem;
+}
+
+h5 {
+    color: var(--blue);
+}
+
+h6 {
+    color: var(--grey);
+    padding-bottom: .5rem;
+}
+
+h1,
+h3 {
+    padding: 0.5rem 0;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+footer>div {
+    padding: 0.5rem 0;
+}
+
+footer>div>button {
+    float: left;
+    border: 0.2rem solid var(--sligh-dark-blue);
+    border-radius: 2rem;
+    padding: 0.4rem 0.6rem;
+    background: var(--white);
+    font-size: 0.8pc;
+    margin: 0 1rem;
+    color: var(--sligh-dark-blue);
+}
+
+#blog-title {
+    background: var(--grey);
+    color: var(--white);
+    border: none;
+    text-align: left;
+}
+
+/**************************  Responsivenes  ******************************/
+@media screen and (min-width:320px) and (max-width:400px) {
+
+    #blog-title>h1,
+    #blog-title>p {
+        width: 100% !important;
+    }
+
+    main {
+        flex-direction: column;
+    }
+
+    main>aside {
+        width: 100% !important;
+        padding: 1rem 0;
+    }
+}
+
+@media screen and (min-width:320px) and (max-width:400px) {
+    section {
+        flex-direction: column;
+    }
+
+    section>div {
+        flex-direction: column-reverse;
+    }
+
+    section>div>img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@media screen and (min-width:400px) and (max-width:1240px) {
+    section>div {
+        flex-direction: column-reverse;
+    }
+
+    section>div>img {
+        width: 100%;
+    }
+}
